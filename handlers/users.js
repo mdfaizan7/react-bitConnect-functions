@@ -181,7 +181,7 @@ exports.getUserDetails = (req, res) => {
           userHandle: doc.data().userHandle,
           imageURL: doc.data().imageURL,
           likeCount: doc.data().likeCount,
-          commentCount: doc.data().body,
+          commentCount: doc.data().commentCount,
           screamId: doc.id
         });
       });
@@ -251,7 +251,7 @@ exports.uploadImage = (req, res) => {
 exports.markNotificationsRead = (req, res) => {
   let batch = db.batch();
   req.body.forEach(notificationId => {
-    const notification = db.doc(`/noifications/${notificationId}`);
+    const notification = db.doc(`/notifications/${notificationId}`);
     batch.update(notification, { read: true });
   });
   batch
